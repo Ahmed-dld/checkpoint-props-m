@@ -1,41 +1,49 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 
-const Profil = (props) => {
-     //console.log(props)
-    const txtc  = {
-       
-        color: "white",
-      backgroundColor: "DodgerBlue",
-      padding: "10px",
-      fontFamily: "Arial",
-      
+import React, { Component } from 'react'
+
+class Profil extends Component {
+    state = {
+        isvisible: false
     }
-    
+
   
+
+    
+    todos =  [
+   'FullName: Ahmed Daldoul',
+   'Bio: Ingénieur civil développement web , région de Monastir',
+   'Function: Ingénieur Civil',
    
+
+]
+
+render() {
+    console.log("render");
     return (
-       
-        <div>
-            {props.handleAlert(props.FullName)}
+        
+        <div className="page">
+            <button className="visiblity-btn" onClick={this.togglevisibility}>show profil</button>
+            {this.state.isvisible ?
+            (<ul className="Profil">
+            {this.todos.map((todo, i) => (
+             
+               
+           
+                <li key={i}  >{todo}
+                <img className="photo" src={image} alt=""/>
+                </li>
+            ))}
+            </ul>) : (<h4 className="notice">Click on the button to show profil</h4>)
             
-        <h1 style= {txtc}> FullName: {props.FullName} </h1>
-        <p style= {{backgroundColor: "lightblue"}}> {props.Bio}</p>
-        <h3 style= {txtc}>Fonction: {props.Func}</h3>
+
+            
+        }
+            
         </div>
     )
 }
-
-Profil.defaultProps = {
-    FullName: "Ahmed Daldoul"
 }
 
-Profil.propTypes = {
-    FullName: PropTypes.string,
-    Bio: PropTypes.string,
-    Func: PropTypes.string,
-    handleAlert: PropTypes.func
-}
 
 
 export default Profil
